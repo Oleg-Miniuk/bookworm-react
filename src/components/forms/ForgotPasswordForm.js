@@ -1,14 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { Form, Button } from 'semantic-ui-react';
 import isEmail from 'validator/lib/isEmail';
-import InlineError from '../messages/InlineError';
+import PropTypes from 'prop-types';
 
-class SignUpForm extends React.Component {
+class ForgotPasswordForm extends Component {
   state = {
     data: {
-      email: '',
-      password: ''
+      email: ''
     },
     loading: false,
     errors: {}
@@ -34,16 +32,11 @@ class SignUpForm extends React.Component {
         loading: true
       });
       submit(data)
-        .catch(err => {
+        .catch(err =>
           this.setState({
-            errors: 'err'
-          });
-          this.setState({
-            errors: {
-              email: err.response.data.err.message
-            }
-          });
-        })
+            errors: err.response.data.errors
+          })
+        )
         .finally(() =>
           this.setState({
             loading: false
@@ -54,51 +47,33 @@ class SignUpForm extends React.Component {
 
   validate = data => {
     const errors = {};
-
     if (!isEmail(data.email)) errors.email = 'Invalid email';
-    if (!data.password) errors.password = "Can't be blank";
-
     return errors;
   };
 
   render() {
-    const { data, errors, loading } = this.state;
-
+    const { data = {}, errors = {}, loading = {} } = this.state;
     return (
       <Form onSubmit={this.onSubmit} loading={loading}>
-        <Form.Field error={!!errors.email}>
+        <Form.Field error={Boolean(errors.email)}>
           <label htmlFor="email">Email</label>
           <input
             type="email"
             id="email"
             name="email"
-            placeholder="email@email.com"
+            placeholder="example@example.com"
             value={data.email}
             onChange={this.onChange}
           />
-          {errors.email && <InlineError text={errors.email} />}
         </Form.Field>
-
-        <Form.Field error={!!errors.password}>
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={data.password}
-            onChange={this.onChange}
-          />
-          {errors.password && <InlineError text={errors.password} />}
-        </Form.Field>
-
-        <Button primary>Sign Up</Button>
+        <Button primary>Login</Button>
       </Form>
     );
   }
 }
 
-SignUpForm.propTypes = {
+ForgotPasswordForm.propTypes = {
   submit: PropTypes.func.isRequired
 };
 
-export default SignUpForm;
+export default ForgotPasswordForm;

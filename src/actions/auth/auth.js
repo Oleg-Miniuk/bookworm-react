@@ -21,7 +21,10 @@ const logoutAPI = () => dispatch => {
   dispatch(userLoggedOut());
 };
 
+const resetPasswordApi = data => () => api.user.resetPassword(data);
+
 export default {
   loginAPI,
-  logoutAPI
+  logoutAPI,
+  resetPasswordApi
 };

@@ -1,8 +1,6 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable jsx-a11y/label-has-for */
 import React, { Component } from 'react';
 import { Form, Button, Message } from 'semantic-ui-react';
-import Validator from 'validator';
+import isEmail from 'validator/lib/isEmail';
 import PropTypes from 'prop-types';
 import InlineError from '../messages/InlineError';
 
@@ -51,7 +49,7 @@ class LoginForm extends Component {
 
   validate = data => {
     const errors = {};
-    if (!Validator.isEmail(data.email)) errors.email = 'Invalid email';
+    if (!isEmail(data.email)) errors.email = 'Invalid email';
     if (!data.password) errors.password = "Can't be blank";
     return errors;
   };
