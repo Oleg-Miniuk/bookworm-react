@@ -10,11 +10,10 @@ export default {
       axios
         .post('/api/auth/confirmation', { token })
         .then(res => res.data.user),
-    resetPasswordRequest: email =>
+    resetPasswordRequest: ({ email }) =>
       axios.post('/api/auth/reset_password_request', { email }),
     validateToken: token => axios.post('/api/auth/validate_token', { token }),
-    resetPassword: email =>
-      axios.post('/api/auth/reset_password_request', { email })
+    resetPassword: data => axios.post('/api/auth/reset_password', data)
   },
   books: {
     fetchAll: () => axios.get('/api/books').then(res => res.data.books),

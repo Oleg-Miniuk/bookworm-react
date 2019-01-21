@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import ForgotPasswordForm from '../forms/ForgotPasswordForm';
 import auth from '../../actions/auth/auth';
 
-class ForgotPassword extends Component {
+class ForgotPasswordPage extends Component {
   state = {
     success: false
   };
@@ -31,13 +31,14 @@ class ForgotPassword extends Component {
   }
 }
 
-ForgotPassword.propTypes = {
+ForgotPasswordPage.propTypes = {
   resetPasswordRequest: PropTypes.func.isRequired
 };
 
 export default connect(
   null,
   dispatch => ({
-    resetPasswordRequest: (...args) => dispatch(auth.resetPasswordApi(...args))
+    resetPasswordRequest: (...args) =>
+      dispatch(auth.resetPasswordRequestAPI(...args))
   })
-)(ForgotPassword);
+)(ForgotPasswordPage);

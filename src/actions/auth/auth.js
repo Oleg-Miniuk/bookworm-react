@@ -21,10 +21,15 @@ const logoutAPI = () => dispatch => {
   dispatch(userLoggedOut());
 };
 
-const resetPasswordApi = data => () => api.user.resetPassword(data);
+const resetPasswordRequestAPI = data => () =>
+  api.user.resetPasswordRequest(data);
+
+export const validateToken = token => () => api.user.validateToken(token);
+
+export const resetPassword = data => () => api.user.resetPassword(data);
 
 export default {
   loginAPI,
   logoutAPI,
-  resetPasswordApi
+  resetPasswordRequestAPI
 };
