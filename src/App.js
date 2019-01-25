@@ -6,6 +6,7 @@ import DashboardPage from './components/pages/DashboardPage';
 import SignUpPage from './components/pages/SignUpPage';
 import ForgotPasswordPage from './components/pages/ForgotPasswordPage';
 import ResetPasswordPage from './components/pages/ResetPasswordPage';
+import NewBookPage from './components/pages/NewBookPage';
 
 const App = () => (
   <div className="ui container">
@@ -15,6 +16,7 @@ const App = () => (
     <Route path="/signup" exact component={SignUpPage} />
     <Route path="/forgot_password" exact component={ForgotPasswordPage} />
     <Route path="/reset_password/:token" exact component={ResetPasswordPage} />
+    <Route path="/books/new" exact component={NewBookPage} />
   </div>
 );
 
